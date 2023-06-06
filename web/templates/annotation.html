@@ -1,0 +1,45 @@
+<!--
+annotation_details.html - Display details about a user's annotation job
+Copyright (C) 2011-2018 Vas Vasiliadis <vas@uchicago.edu>
+University of Chicago
+-->
+{% extends "base.html" %}
+{% block title %}Annotation Details{% endblock %}
+{% block body %}
+  {% include "header.html" %}
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Annotation Details</h1>
+    </div>
+
+    <!-- DISPLAY ANNOTATION JOB DETAILS -->
+    <b>Request ID: </b>{{ annotation['request_id'] }}</br>
+    <b>Request Time: </b>{{ annotation['request_time'] }}</br>
+    <b>VCF Input File: </b>
+      <a href="{{ annotation['input_url']}}"> {{ annotation['input_file'] }}</a></br>
+    <b>Status: </b>{{ annotation['status'] }}</br>
+    <!-- if statements https://stackoverflow.com/questions/19614027/jinja2-template-variable-if-none-object-set-a-default-value -->
+    <!-- generating links: https://stackoverflow.com/questions/54923267/django-jinja-href-not-downloading-file-->
+    <!-- add arguments to get request: https://stackoverflow.com/questions/44607593/jinja2-flask-url-for-with-4-parameters-creates-a-get-request -->
+    {% if annotation['complete_time'] %}
+      <b>Complete Time: </b> {{ annotation['complete_time'] }}</br>
+      <hr />
+      <b>Annotated Results File: </b>
+      {% if show_upgrade == 'upgrade' %}
+        <a href="{{ url_for('subscribe') }}"> upgrade to Premium for download</a></br>
+      {% elif show_upgrade == 'in progress' %}
+        File is being restored. Please check back later</br>
+      {% else %}
+        <a href="{{ annotation['results_url'] }}"> download</a></br>
+      {% endif %}
+      <b>Annotation Log File: </b>
+      <a href="{{ url_for('annotation_log', id=annotation['request_id']) }}"> view</a></br>
+    {% else %}
+      {{''}}
+    {% endif %}
+    <hr />
+    <a href="{{ url_for('annotations_list') }}">&larr; back to annotations list</a>
+
+  </div> <!-- container -->
+{% endblock %}

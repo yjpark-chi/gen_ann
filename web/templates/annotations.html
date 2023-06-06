@@ -1,0 +1,51 @@
+<!--
+annotations.html - Display a list of user annotation jobs with links to details for each job
+Copyright (C) 2011-2018 Vas Vasiliadis <vas@uchicago.edu>
+University of Chicago
+-->
+{% extends "base.html" %}
+{% block title %}Annotations{% endblock %}
+{% block body %}
+    {% include "header.html" %}
+    <div class="container">
+        <div class="page-header">
+            <h1>My Annotations</h1>
+        </div>
+
+    <div class="row text-right">
+        <a href="{{ url_for('annotate') }}" title="Request New Annotation">
+            <button type="button" class="btn btn-link" aria-label="Request New Annotation">
+                <i class="fa fa-plus fa-lg"></i> Request New Annotation
+            </button>
+        </a>
+    </div>
+
+    <!-- DISPLAY LIST OF ANNOTATION JOBS -->
+    <!-- Table formatting reference: https://www.tutorialspoint.com/html/html_tables.htm -->
+    <!-- https://stackoverflow.com/questions/8522337/using-an-hr-tag-with-a-table -->
+    <!-- https://stackoverflow.com/questions/30236631/white-space-issue-using-percentage -->
+    <body>
+        <table cellpadding = "5" cellspacing = "5">
+            <thead>
+                <tr style="border-bottom: 1px solid #ECECEC">
+                    <th style="border:none; padding:2px; width:45%">Request ID</th>
+                    <th style="border:none; padding:2px; width:25%">Request Time</th>
+                    <th style="border:none; padding:2px; width:25%">VCF File Name</th>
+                    <th style="border:none; padding:2px">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a_dict in annotations %}
+                    <tr style="border-bottom: 1px solid #ECECEC">
+                        <td style="border:none; padding:5px"><a href="{{ url_for('annotation_details', id=a_dict['job_id']) }}"> {{ a_dict['job_id'] }} </a></td>
+                        <td style="border:none; padding:5px">{{ a_dict['submit_time'] }}</td>
+                        <td style="border:none; padding:5px">{{ a_dict['input_file_name'] }}</td>
+                        <td style="border:none; padding:5px">{{ a_dict['job_status'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+
+  </div> <!-- container -->
+{% endblock %}
