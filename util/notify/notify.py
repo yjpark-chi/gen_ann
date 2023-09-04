@@ -32,7 +32,7 @@ AWS_SQS_MAX_MESSAGES = int(config.get('sqs', 'AWS_SQS_MAX_MESSAGES'))
 EMAIL_SUBJECT = config.get('email', 'EMAIL_SUBJECT')
 EMAIL_BODY = config.get('email', 'EMAIL_BODY')
 
-'''Capstone - Exercise 3(d)
+'''
 Reads result messages from SQS and sends notification emails.
 '''
 def handle_results_queue(sqs=None):

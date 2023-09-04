@@ -26,11 +26,8 @@ from app import app, db
 from decorators import authenticated, is_premium
 
 """Start annotation request
-Create the required AWS S3 policy document and render a form for
+Creates the required AWS S3 policy document and renders a form for
 uploading an annotation input file using the policy document
-
-Note: You are welcome to use this code instead of your own
-but you can replace the code below with your own if you prefer.
 """
 @app.route('/annotate/', methods=['GET'])
 @authenticated
@@ -86,9 +83,6 @@ def annotate():
 Accepts the S3 redirect GET request, parses it to extract 
 required info, saves a job item to the database, and then
 publishes a notification for the annotator service.
-
-Note: Update/replace the code below with your own from previous
-homework assignments
 """
 @app.route('/annotate/job', methods=['GET'])
 @authenticated
@@ -120,8 +114,6 @@ def create_annotation_job_request():
         }
 
     # Persist job to database
-    # Move your code here...
-
     try:
         dynamodb = boto3.resource('dynamodb', region_name=region)
         ann_table = dynamodb.Table(app.config['AWS_DYNAMODB_ANNOTATIONS_TABLE'])
@@ -135,7 +127,6 @@ def create_annotation_job_request():
         app.logger.error(e.response['Error']['Code'])
 
     # Send message to request queue
-    # Move your code here...
 
     # Add user role to entry
     entry["user_role"] =  session['role']
@@ -473,10 +464,7 @@ def subscribe():
     session['role'] = "premium_user"
     # clear messages waiting to be archived
     # Cancel any pending archivals, i.e., jobs that recently completed and are awaiting archival
-    # after the 5 minute grace period.
-    # I take this to mean cancel the jobs that have already been sent to SQS to be archived
-    # (jobs that have already finished waiting)
-    
+    # after the 5 minute grace period.    
     
     try:
         sqs = boto3.resource('sqs', region_name=app.config['AWS_REGION_NAME'])
@@ -499,8 +487,6 @@ def subscribe():
 
 
     # Request restoration of the user's data from Glacier
-    # ...add code here to initiate restoration of archived user data
-    # ...and make sure you handle files not yet archived!
 
     # publish archive initiation request to archive sns
     thaw_arn = app.config['AWS_THAW_SNS']

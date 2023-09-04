@@ -48,7 +48,7 @@ def db_connect():
         db=database_name)
 
 
-"""Column inices for pileup and VCF
+"""Column indices for pileup and VCF
 """
 def getFormatSpecificIndices(format='vcf'):
     chr_ind = 0

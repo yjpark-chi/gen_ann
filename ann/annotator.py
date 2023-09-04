@@ -110,8 +110,6 @@ while True:
         file_id = f"{job_id}~{input_file}"
     
         ##########################################
-        # code and references from A8
-
         # check if a user has a directory. if not, create one to store their job files
         # https://stackoverflow.com/questions/1274405/how-to-create-new-folder
 
@@ -139,7 +137,6 @@ while True:
         ##########################################
 
         # Launch annotation job as a background process
-        # code from A8
         args = ['python', f"{os.getcwd()}/run.py", f"{os.getcwd()}/anntools/data/{user}/{file_id}/{file_id}"]
 
         subprocess_ran = run_subprocess(args, job_id)

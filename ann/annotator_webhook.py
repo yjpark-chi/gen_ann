@@ -66,8 +66,6 @@ except ClientError as e:
 
 
 '''
-A13 - Replace polling with webhook in annotator
-
 Receives request from SNS; queries job queue and processes message.
 Reads request messages from SQS and runs AnnTools as a subprocess.
 Updates the annotations database with the status of the request.
