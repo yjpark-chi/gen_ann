@@ -6,6 +6,8 @@
 # Set GAS annotator configuration options
 #
 ##
+
+# Certain variables have been removed for privacy
 __author__ = 'Vas Vasiliadis <vas@uchicago.edu>'
 
 class Config(object):
@@ -25,16 +27,16 @@ class Config(object):
   AWS_S3_RESULTS_BUCKET = "gas-results"
 
   # AWS SNS topics
-  AWS_SNS_ARN = "arn:aws:sns:us-east-1:127134666975:yjp-a17-job-requests"
+  AWS_SNS_ARN = ""
 
   # AWS SQS queues
-  AWS_SQS_QUEUE_NAME = "yjp-a17-job-requests"
-  AWS_SQS_QUEUE_ARN = "arn:aws:sqs:us-east-1:127134666975:yjp-a17-job-requests"
+  AWS_SQS_QUEUE_NAME = ""
+  AWS_SQS_QUEUE_ARN = ""
   AWS_SQS_WAIT_TIME = 20
   AWS_SQS_MAX_MESSAGES = 10
 
   # AWS DynamoDB
-  AWS_DYNAMODB_ANNOTATIONS_TABLE = "yjp_annotations"
+  AWS_DYNAMODB_ANNOTATIONS_TABLE = ""
 
   FILE_SEP = "~"
   KEY_SEP = "/"

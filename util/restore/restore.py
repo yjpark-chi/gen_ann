@@ -15,14 +15,16 @@ import json
 from botocore.exceptions import ClientError
 
 # Define constants here; no config file is used for Lambdas
-QUEUE_NAME = 'yjp-a16-restore'
-RESTORE_SQS_ARN = "arn:aws:sqs:us-east-1:127134666975:yjp-a16-restore"
-RESTORE_SNS = "arn:aws:sns:us-east-1:127134666975:yjp-a16-restore"
+
+# Certain variables have been removed for privacy
+QUEUE_NAME = ''
+RESTORE_SQS_ARN = ""
+RESTORE_SNS = ""
 REGION = 'us-east-1'
 VAULT_NAME = 'ucmpcs'
 RESULTS_BUCKET = 'gas-results'
 DESC_SEP = ","
-DYNAMODB = 'yjp_annotations'
+DYNAMODB = ''
 KEY_SEP = '/'
 FILE_SEP = '~'
 
